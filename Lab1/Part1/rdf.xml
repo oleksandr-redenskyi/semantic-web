@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:schema="http://schema.org/"
+         xmlns:ex="http://example.com/"
+         xmlns:dc="http://purl.org/dc/terms/">
+
+  <!-- Латунь – це сплав міді та цинку-->
+  <rdf:Description rdf:about="http://example.com/materials/copper">
+    <rdfs:label>Copper</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/materials/zinc">
+    <rdfs:label>Zinc</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/materials/brass">
+    <rdfs:label>Brass</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/Alloy"/>
+    <ex:consistsOf>
+      <rdf:Bag>
+        <rdf:li rdf:resource="http://example.com/materials/copper"/>
+        <rdf:li rdf:resource="http://example.com/materials/zinc"/>
+      </rdf:Bag>
+    </ex:consistsOf>
+  </rdf:Description>
+
+  <!-- SPIEGEL — німецький інформаційний журнал зі штаб-квартирою в Гамбурзі -->
+  <rdf:Description rdf:about="http://example.com/locations/hamburg">
+    <rdfs:label>Hamburg</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/City"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/organizations/spiegel">
+    <rdfs:label>SPIEGEL</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/Periodical"/>
+    <dc:language>de</dc:language>
+    <schema:location rdf:resource="http://example.com/locations/hamburg"/>
+  </rdf:Description>
+
+  <!-- Есе складається зі вступу, основної частини та висновку -->
+  <rdf:Description rdf:about="http://example.com/essay">
+    <rdfs:label>Essay</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/CreativeWork"/>
+    <ex:consistsOf>
+     <rdf:Seq>
+        <rdf:li rdf:resource="http://example.com/essay/introduction"/>
+        <rdf:li rdf:resource="http://example.com/essay/body"/>
+        <rdf:li rdf:resource="http://example.com/essay/conclusion"/>
+      </rdf:Seq>
+    </ex:consistsOf>
+  </rdf:Description>
+
+  <!-- Павло знає, що Олена живе в Полтаві -->
+  <rdf:Description rdf:about="http://example.com/locations/poltava">
+    <rdfs:label>Poltava</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/City"/>
+  </rdf:Description>
+  <foaf:Person rdf:about="http://example.com/people/olena">
+    <rdfs:label>Olena</rdfs:label>
+    <foaf:name>Olena</foaf:name>
+  </foaf:Person>
+  <rdf:Statement rdf:about="http://example.org/people/olena/location">
+    <rdf:subject rdf:resource="http://example.com/people/olena"/>
+    <rdf:predicate rdf:resource="http://schema.org/location"/>
+    <rdf:object rdf:resource="http://example.com/locations/poltava"/>
+  </rdf:Statement>
+  <foaf:Person rdf:about="http://example.com/people/pavlo">
+    <rdfs:label>Pavlo</rdfs:label>
+    <foaf:name>Pavlo</foaf:name>
+    <ex:knows rdf:resource="http://example.org/people/olena/location"/>
+  </foaf:Person>
+
+  <!-- Олена каже, що її друг живе в Києві -->
+  <rdf:Description rdf:about="http://example.com/locations/kyiv">
+    <rdfs:label>Kyiv</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/City"/>
+  </rdf:Description>
+  <foaf:Person rdf:about="http://example.com/people/olena">
+    <!-- Ім'я вже наведено вище -->
+    <ex:says>
+      <rdf:Statement rdf:about="http://example.org/people/olena/location">
+        <rdf:subject>
+          <foaf:Person>
+            <rdfs:label>Olena's friend</rdfs:label>
+          </foaf:Person>
+        </rdf:subject>
+        <rdf:predicate rdf:resource="http://schema.org/location"/>
+        <rdf:object rdf:resource="http://example.com/locations/kyiv"/>
+      </rdf:Statement>
+    </ex:says>
+  </foaf:Person>
+
+  <!-- Стефан думає, що Анна знає, що він знає її батька -->
+  <foaf:Person rdf:about="http://example.com/people/anna">
+    <rdfs:label>Anna</rdfs:label>
+    <foaf:name>Anna</foaf:name>
+  </foaf:Person>
+  <foaf:Person rdf:about="http://example.com/people/stefan">
+    <rdfs:label>Stefan</rdfs:label>
+    <foaf:name>Stefan</foaf:name>
+    <ex:thinks>
+      <rdf:Statement>
+        <rdf:subject rdf:resource="http://example.com/people/anna"/>
+        <rdf:predicate rdf:resource="http://example.com/knows"/>
+        <rdf:object>
+          <rdf:Statement>
+            <rdf:subject rdf:resource="http://example.com/people/stefan"/>
+            <rdf:predicate rdf:resource="http://example.com/knows"/>
+            <rdf:object>
+              <foaf:Person>
+                <rdfs:label>Anna's father</rdfs:label>
+                <foaf:name>Anna's father</foaf:name>
+                <schema:parent rdf:resource="http://example.com/people/anna"/>
+              </foaf:Person>
+            </rdf:object>
+          </rdf:Statement>
+        </rdf:object>
+      </rdf:Statement>
+    </ex:thinks>
+  </foaf:Person>
+
+
+  <!-- Іван знає, що Рим є столицею Італії -->
+  <rdf:Description rdf:about="http://example.com/locations/rome">
+    <rdfs:label>Rome</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/City"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/locations/italy">
+    <rdfs:label>Italy</rdfs:label>
+    <rdf:type rdf:resource="http://schema.org/Country"/>
+  </rdf:Description>
+  <foaf:Person rdf:about="http://example.com/people/ivan">
+    <ex:knows>
+      <rdf:Statement>
+        <rdf:subject rdf:resource="http://example.com/locations/rome"/>
+        <rdf:predicate rdf:resource="http://example.com/capital"/>
+        <rdf:object rdf:resource="http://example.com/locations/italy"/>
+      </rdf:Statement>
+    </ex:knows>
+  </foaf:Person>
+</rdf:RDF>
