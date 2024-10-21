@@ -1,0 +1,28 @@
+# Напишіть SPARQL запит, щоб дізнатися:
+# - кількість лауреатів Нобелівської премії з фізики, які є іммігрантами (народилися в
+# країні, відмінній від країни університету).
+PREFIX dbc: <http://dbpedia.org/resource/Category:>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT (COUNT(*) AS ?count)
+WHERE {
+    SELECT ?person
+    # (SAMPLE(?person_birth_country) AS ?p_country)
+    # (SAMPLE(?university_country) AS ?u_country)
+    WHERE {
+        ?person dbo:almaMater ?university ;
+                dbo:award dbr:Nobel_Prize_in_Physics ;
+                dbp:birthPlace ?person_birth_place .
+        ?university dbp:country | dbp:country / rdfs:label | dbo:country | dbo:country / rdfs:label ?university_country .
+
+        ?person_birth_place dbo:country | dbo:country / rdfs:label | dbp:country | dbp:country / rdfs:label | dbp:subdivisionName+ | dbp:subdivisionName+ / rdfs:label ?person_birth_country .
+
+    }
+    GROUP BY ?person
+    HAVING (
+        SUM(IF(?person_birth_country = ?university_country, 1, 0)) = 0
+    )
+}

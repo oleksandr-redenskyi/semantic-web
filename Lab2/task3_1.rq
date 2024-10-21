@@ -1,0 +1,25 @@
+# Напишіть SPARQL запит, щоб дізнатися:
+# - усіх лауреатів Нобелівської премії з фізики в порядку від найстаршого до
+# наймолодшого;
+PREFIX dbc: <http://dbpedia.org/resource/Category:>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?name ?age ?birthDate
+WHERE {
+    ?person dbo:award dbr:Nobel_Prize_in_Physics .
+    ?person dbp:name ?name .
+    ?person dbo:birthDate ?birthDate .
+    BIND(FLOOR((NOW() - ?birthDate) / (60 * 60 * 24 * 365.24)) as ?age)
+
+    OPTIONAL {
+        ?person dbo:deathDate ?deathDate .
+    }
+
+    FILTER (
+        !BOUND(?deathDate)
+    )
+}
+ORDER BY ?birthDate

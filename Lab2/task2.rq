@@ -1,0 +1,38 @@
+# Напишіть один SPARQL запит, який буде повертати результати на основі таких
+# інструкцій:
+# - назви країн, які починаються з великої літери «А» на континентах «Європа» та
+# «Північна Америка», упорядкувавши результати в алфавітному порядку;
+# - для кожної країни перелічити усі назви їхніх пов’язаних мов (кожна назва мови має
+# бути у верхньому регістрі, якщо мов декілька - мови повинні розділятися символом
+# «|», наприклад HUNGARIAN|GERMAN);
+# - країни повинні відображатися у таблиці, навіть якщо не мають пов’язаних мов.
+PREFIX dbc: <http://dbpedia.org/resource/Category:>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?country ?label (GROUP_CONCAT(?language_upper; separator='|') AS ?languages)
+WHERE {
+    ?country rdf:type dbo:Country .
+    {?country dct:subject dbc:Countries_in_Europe}
+    UNION
+    {?country dct:subject dbc:Countries_in_North_America}
+    ?country rdfs:label ?label .
+
+    OPTIONAL {
+        ?language dbo:spokenIn ?country .
+        ?language dbp:name ?language_name
+        BIND(UCASE(?language_name) AS ?language_upper_optional)
+    }
+    BIND(COALESCE(?language_upper_optional, "") AS ?language_upper)
+
+
+    FILTER (
+        lang(?label) = 'en'
+        && STRSTARTS(?label, 'A')
+    )
+
+}
+GROUP BY ?country ?label
+ORDER BY ?label
