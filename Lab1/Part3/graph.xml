@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:ns1="http://example.org/actions/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:schema="https://schema.org/"
+>
+  <rdf:Description rdf:about="http://example.org/person/caid/address">
+    <rdf:type rdf:resource="https://schema.org/PostalAddress"/>
+    <schema:addressCountry>US</schema:addressCountry>
+    <schema:addressLocality xml:lang="uk">Берклі</schema:addressLocality>
+    <schema:addressRegion xml:lang="uk">Каліфорнія</schema:addressRegion>
+    <schema:postalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">94709</schema:postalCode>
+    <schema:streetAddress>1516 Henry Street</schema:streetAddress>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/person/emma">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <foaf:givenName xml:lang="uk">Емма</foaf:givenName>
+    <schema:address rdf:resource="http://example.org/person/emma/address"/>
+    <schema:knowsAbout rdf:resource="http://example.org/topic/waste-management"/>
+    <schema:knowsAbout rdf:resource="http://example.org/topic/toxic-waste"/>
+    <schema:knowsAbout rdf:resource="http://example.org/topic/air-pollution"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/cycling"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/music"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/travelling"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/portugal"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/italy"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/germany"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/denmark"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/sweden"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/france"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/person/caid">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <foaf:givenName xml:lang="uk">Кейд</foaf:givenName>
+    <schema:address rdf:resource="http://example.org/person/caid/address"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/birds"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/ecology"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/environment"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/photography"/>
+    <foaf:topic_interest rdf:resource="http://example.org/topic/travelling"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/canada"/>
+    <ns1:visited-place rdf:resource="http://example.org/country/france"/>
+    <foaf:knows rdf:resource="http://example.org/person/emma"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/person/emma/degree">
+    <rdf:type rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    <schema:author rdf:resource="http://example.org/person/emma"/>
+    <schema:credentialCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">degree</schema:credentialCategory>
+    <schema:educationalLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">master</schema:educationalLevel>
+    <schema:competencyRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string">chemistry</schema:competencyRequired>
+    <schema:recognizedBy rdf:resource="http://example.org/university/uv"/>
+    <schema:datePublished rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">2015</schema:datePublished>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/country/sweden">
+    <rdf:type rdf:resource="https://schema.org/Country"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/person/emma/address">
+    <rdf:type rdf:resource="https://schema.org/PostalAddress"/>
+    <schema:addressCountry rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ES</schema:addressCountry>
+    <schema:addressRegion>Valencia</schema:addressRegion>
+    <schema:postalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">46020</schema:postalCode>
+    <schema:streetAddress xml:lang="es">Carrer de la Guardia Civil 20</schema:streetAddress>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/university/ucla">
+    <rdf:type rdf:resource="https://schema.org/EducationalOrganization"/>
+    <rdfs:label xml:lang="uk">Каліфорнійський університет</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/actions/visited-place">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <rdfs:range rdf:resource="https://schema.org/Place"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/city/paris">
+    <rdf:type rdf:resource="https://schema.org/City"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/university/uv">
+    <rdf:type rdf:resource="https://schema.org/EducationalOrganization"/>
+    <rdfs:label xml:lang="uk">Університет Валенсії</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/person/caid/degree">
+    <rdf:type rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    <schema:author rdf:resource="http://example.org/person/caid"/>
+    <schema:credentialCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string">degree</schema:credentialCategory>
+    <schema:educationalLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bachelor</schema:educationalLevel>
+    <schema:competencyRequired rdf:datatype="http://www.w3.org/2001/XMLSchema#string">biology</schema:competencyRequired>
+    <schema:recognizedBy rdf:resource="http://example.org/university/ucla"/>
+    <schema:datePublished rdf:datatype="http://www.w3.org/2001/XMLSchema#year">2011</schema:datePublished>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/country/canada">
+    <rdf:type rdf:resource="https://schema.org/Country"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nde8a99ba1ae94635bdd4091668db6b82">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/>
+    <rdf:_1 rdf:resource="http://example.org/person/emma"/>
+    <rdf:_2 rdf:resource="http://example.org/person/caid"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/events/caid-and-emma-meeting">
+    <rdf:type rdf:resource="https://schema.org/Event"/>
+    <schema:attendee rdf:nodeID="Nde8a99ba1ae94635bdd4091668db6b82"/>
+    <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#gYearMonth">2014-08</schema:startDate>
+    <schema:location rdf:resource="http://example.org/city/paris"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/country/denmark">
+    <rdf:type rdf:resource="https://schema.org/Country"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/country/france">
+    <rdf:type rdf:resource="https://schema.org/Country"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/country/germany">
+    <rdf:type rdf:resource="https://schema.org/Country"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/country/italy">
+    <rdf:type rdf:resource="https://schema.org/Country"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/country/portugal">
+    <rdf:type rdf:resource="https://schema.org/Country"/>
+  </rdf:Description>
+</rdf:RDF>

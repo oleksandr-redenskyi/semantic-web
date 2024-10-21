@@ -1,0 +1,97 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ns1: <http://example.org/actions/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:visited-place a rdf:Property ;
+    rdfs:domain foaf:Person ;
+    rdfs:range schema:Place .
+
+<http://example.org/events/caid-and-emma-meeting> a schema:Event ;
+    schema:attendee [ a rdf:Bag ;
+            rdf:_1 <http://example.org/person/emma> ;
+            rdf:_2 <http://example.org/person/caid> ] ;
+    schema:location <http://example.org/city/paris> ;
+    schema:startDate "2014-08"^^xsd:gYearMonth .
+
+<http://example.org/person/caid/degree> a schema:EducationalOccupationalCredential ;
+    schema:author <http://example.org/person/caid> ;
+    schema:competencyRequired "biology"^^xsd:string ;
+    schema:credentialCategory "degree"^^xsd:string ;
+    schema:datePublished "2011"^^xsd:year ;
+    schema:educationalLevel "bachelor"^^xsd:string ;
+    schema:recognizedBy <http://example.org/university/ucla> .
+
+<http://example.org/person/emma/degree> a schema:EducationalOccupationalCredential ;
+    schema:author <http://example.org/person/emma> ;
+    schema:competencyRequired "chemistry"^^xsd:string ;
+    schema:credentialCategory "degree"^^xsd:string ;
+    schema:datePublished "2015"^^xsd:gYear ;
+    schema:educationalLevel "master"^^xsd:string ;
+    schema:recognizedBy <http://example.org/university/uv> .
+
+<http://example.org/city/paris> a schema:City .
+
+<http://example.org/country/canada> a schema:Country .
+
+<http://example.org/country/denmark> a schema:Country .
+
+<http://example.org/country/germany> a schema:Country .
+
+<http://example.org/country/italy> a schema:Country .
+
+<http://example.org/country/portugal> a schema:Country .
+
+<http://example.org/country/sweden> a schema:Country .
+
+<http://example.org/person/caid/address> a schema:PostalAddress ;
+    schema:addressCountry "US" ;
+    schema:addressLocality "Берклі"@uk ;
+    schema:addressRegion "Каліфорнія"@uk ;
+    schema:postalCode "94709"^^xsd:string ;
+    schema:streetAddress "1516 Henry Street" .
+
+<http://example.org/person/emma/address> a schema:PostalAddress ;
+    schema:addressCountry "ES"^^xsd:string ;
+    schema:addressRegion "Valencia" ;
+    schema:postalCode "46020"^^xsd:string ;
+    schema:streetAddress "Carrer de la Guardia Civil 20"@es .
+
+<http://example.org/university/ucla> a schema:EducationalOrganization ;
+    rdfs:label "Каліфорнійський університет"@uk .
+
+<http://example.org/university/uv> a schema:EducationalOrganization ;
+    rdfs:label "Університет Валенсії"@uk .
+
+<http://example.org/country/france> a schema:Country .
+
+<http://example.org/person/caid> a foaf:Person ;
+    ns1:visited-place <http://example.org/country/canada>,
+        <http://example.org/country/france> ;
+    foaf:givenName "Кейд"@uk ;
+    foaf:knows <http://example.org/person/emma> ;
+    foaf:topic_interest <http://example.org/topic/birds>,
+        <http://example.org/topic/ecology>,
+        <http://example.org/topic/environment>,
+        <http://example.org/topic/photography>,
+        <http://example.org/topic/travelling> ;
+    schema:address <http://example.org/person/caid/address> .
+
+<http://example.org/person/emma> a foaf:Person ;
+    ns1:visited-place <http://example.org/country/denmark>,
+        <http://example.org/country/france>,
+        <http://example.org/country/germany>,
+        <http://example.org/country/italy>,
+        <http://example.org/country/portugal>,
+        <http://example.org/country/sweden> ;
+    foaf:givenName "Емма"@uk ;
+    foaf:topic_interest <http://example.org/topic/cycling>,
+        <http://example.org/topic/music>,
+        <http://example.org/topic/travelling> ;
+    schema:address <http://example.org/person/emma/address> ;
+    schema:knowsAbout <http://example.org/topic/air-pollution>,
+        <http://example.org/topic/toxic-waste>,
+        <http://example.org/topic/waste-management> .
+
