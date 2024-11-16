@@ -11,23 +11,23 @@ const clientSideEmotionCache = createEmotionCache();
 const defaultTheme = createTheme()
 
 interface MyAppProps extends AppProps {
-    emotionCache?: EmotionCache;
+  emotionCache?: EmotionCache;
 }
 
 export default function MyApp(props: MyAppProps) {
-    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-    return (
-        <CacheProvider value={emotionCache}>
-            <Head>
-                <meta name="viewport" content="initial-scale=1, width=device-width" />
-            </Head>
-            <ThemeProvider theme={defaultTheme}>
-                <CssBaseline />
-                <Layout>
-                <Component {...pageProps} />
-                </Layout>
-            </ThemeProvider>
-        </CacheProvider>
-    );
+  return (
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <ThemeProvider theme={defaultTheme}>
+        <CssBaseline />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </CacheProvider>
+  );
 }
