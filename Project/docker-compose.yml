@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  frontend:
+    build:
+      context: 'alumni-client'
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    logging:
+      driver: "local"
+    ports:
+      - 3000:3000
+    networks:
+      - backbone
+  api:
+    build:
+      context: 'alumni-server'
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    logging:
+      driver: "local"
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+    networks:
+      - backbone
+
+networks:
+  backbone:
+    driver: bridge
